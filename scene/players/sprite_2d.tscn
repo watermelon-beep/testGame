@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://s0avgoj8exc5"]
+
+[ext_resource type="Texture2D" uid="uid://gdwjbd8kvin" path="res://assets/sprites/charbattle.png" id="1_1sgeh"]
+[ext_resource type="Script" uid="uid://dxv6v1rgnrl0d" path="res://scripts/Sprite2d.cs" id="2_1sgeh"]
+
+[node name="world" type="Node2D" unique_id=755731880]
+
+[node name="TileMapLayer" type="TileMapLayer" parent="." unique_id=1722919688]
+
+[node name="Sprite2D" type="Sprite2D" parent="TileMapLayer" unique_id=1427336248]
+position = Vector2(445.99994, 308)
+scale = Vector2(0.242, 0.286)
+texture = ExtResource("1_1sgeh")
+script = ExtResource("2_1sgeh")

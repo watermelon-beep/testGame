@@ -13,12 +13,12 @@ config_version=5
 config/name="New Game Project"
 run/main_scene="uid://s0avgoj8exc5"
 config/features=PackedStringArray("4.7", "C#", "Forward Plus")
-config/icon="res://icon.svg"
 
 [display]
 
 window/stretch/mode="canvas_items"
 window/stretch/aspect="expand"
+window/stretch/scale=3.0
 
 [dotnet]
 
@@ -45,4 +45,5 @@ folder_colors={
 
 [rendering]
 
+textures/canvas_textures/default_texture_filter=0
 rendering_device/driver.windows="d3d12"

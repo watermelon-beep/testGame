@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://gdwjbd8kvin"
-path="res://.godot/imported/charbattle.png-ea52d94a8a759142c81115f4044c9755.ctex"
+uid="uid://vl16wjthywwu"
+path="res://.godot/imported/male_hero.png-54c40e4296a5ad1e4118d7e0873af27c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://charbattle.png"
-dest_files=["res://.godot/imported/charbattle.png-ea52d94a8a759142c81115f4044c9755.ctex"]
+source_file="res://assets/sprites/male_hero.png"
+dest_files=["res://.godot/imported/male_hero.png-54c40e4296a5ad1e4118d7e0873af27c.ctex"]
 
 [params]
 

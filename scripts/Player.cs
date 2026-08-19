@@ -1,65 +1,52 @@
 using Godot;
 using System;
 
-public partial class Player : CharacterBody2D
+
+	public partial class Player : CharacterBody2D
 {
+	[Export] public float currentSpeed;
+    [Export] public float WalkSpeed = 100.0f;
+	[Export] public float RunSpeed = 200.0f;
+
 	public override void _Ready()
 	{
 
 	}
 
-	public override void _PhysicsProcess(double delta)
-	{
+    public override void _PhysicsProcess(double delta)
+    {
+        Vector2 velocity = Velocity;
+        Vector2 direction = Input.GetVector("ui_left", "ui_right", "ui_up", "ui_down");
 
-		float speed = 100;
-
-		Velocity = Vector2.Zero;
-
-		if(Input.IsKeyPressed(Key.W)) 
+		if(Input.IsActionPressed("Sprint")) 
 		{
-
-			Velocity = new Vector2(0, -speed);
-			playAnimation("up");
-
-		}
-		else if(Input.IsKeyPressed(Key.D) && Input.IsKeyPressed(Key.Shift))
-		 {
-			Velocity = new Vector2(speed * 2, 0);
 			playAnimation("run");
-		 }
-		 else if(Input.IsKeyPressed(Key.D)) 
-		{
+			currentSpeed = RunSpeed;
+		} 
+		else currentSpeed = WalkSpeed;
 
-			Velocity = new Vector2(speed, 0);
-			playAnimation("right");
-		}
-		else if(Input.IsKeyPressed(Key.A)) 
-		{
+        if (direction != Vector2.Zero) velocity = direction * currentSpeed;
 
-			Velocity = new Vector2(-speed, 0);
-			playAnimation("left");
+			 if (direction.X > 0) playAnimation("right");
+			else if (direction.X < 0) playAnimation("left");
+			else if (direction.Y < 0) playAnimation("up");
+			else if (direction.Y > 0) playAnimation("down");
+			else {
+				velocity = velocity.MoveToward(Vector2.Zero, currentSpeed);
+				playAnimation("idle");
+			}
 
-		}
-		else if(Input.IsKeyPressed(Key.S)) 
-		{
-
-			Velocity = new Vector2(0, speed);
-			playAnimation("down");
-
-		}  
-		else {	
-
-			playAnimation("idle");
-
-		}
-
-		MoveAndSlide();
-	}
+        Velocity = velocity;
+        MoveAndSlide();
+    }
 
 	void playAnimation(string direction) 
 	{
 
 		AnimatedSprite2D animation = GetNode<AnimatedSprite2D>("AnimatedSprite2D");
+
+		 if (animation.Animation == direction && animation.IsPlaying())
+        	return;
 
 		switch(direction) {
 			case "up":
@@ -69,12 +56,13 @@ public partial class Player : CharacterBody2D
 				animation.FlipH = true;
 				animation.Play("walk");
 				break;
-			case "right":
+			case "right": 
 				animation.FlipH = false;
 				animation.Play("walk");
 				break;
 			case "run":
-				animation.Play("run");
+				if (animation.Animation != "run" || !animation.IsPlaying())
+					animation.Play("run");
 				break;
 			case "down":
 				animation.Play("walk");
@@ -83,5 +71,10 @@ public partial class Player : CharacterBody2D
 				animation.Play("idle");
 				break;
 		}
+
+		animation.Play(direction);
 	}
+
 }
+
+

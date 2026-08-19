@@ -373,12 +373,12 @@ animations = [{
 [node name="player" type="CharacterBody2D" unique_id=1378005592]
 script = ExtResource("1_ech7y")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297708263]
-
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." unique_id=604554325]
-position = Vector2(90, 90.25001)
-scale = Vector2(1.3124998, 1.1210936)
+position = Vector2(64.00001, 66.25001)
+scale = Vector2(0.9062499, 0.74609363)
 sprite_frames = SubResource("SpriteFrames_fotyc")
-animation = &"idle"
+animation = &"run"
 autoplay = "idle"
-frame_progress = 0.23507392
+frame_progress = 0.4683796
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="." unique_id=1297708263]
